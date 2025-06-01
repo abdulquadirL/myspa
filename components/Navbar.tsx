@@ -8,13 +8,13 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <nav className="bg-amber-300 shadow-md sticky top-0 z-50">
+    <nav className="bg-amber-200 shadow-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
         <Link href="/" className="text-2xl font-bold text-black">
           Nirvanad'Spa
         </Link>
 
-        <div className="hidden md:flex gap-6 items-center text-gray-700">
+        <div className="hidden md:flex gap-6 items-center text-gray-800">
           <Link href="/">Home</Link>
           <Link href="/services">Services</Link>
           <Link href="/about">About</Link>

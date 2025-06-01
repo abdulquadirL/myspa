@@ -6,7 +6,7 @@ export default function Hero () {
         <h1 className="text-4xl md:text-5xl font-bold leading-tight">
           Rejuvenate Your Body. Refresh Your Mind.
         </h1>
-        <p className="mt-4 text-lg md:text-xl">
+        <p className="mt-4 text-lg md:text-xl text-amber-200">
           Experience premium massage therapy, facials, and holistic spa treatments in Abuja. Escape into wellness — you deserve it.
         </p>
         <div className="mt-8 flex justify-center gap-4">
