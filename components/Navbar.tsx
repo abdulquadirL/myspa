@@ -20,7 +20,7 @@ export default function Navbar() {
           <Link href="/about">About</Link>
           <button
             onClick={() => setIsOpen(true)}
-            className="bg-black text-amber-300 px-4 py-2 animate-bounce rounded-full hover:bg-emerald-600 transition"
+            className="bg-black text-amber-300 px-4 py-2 animate-bounce rounded-full hover:bg-amber-300 hover:text-black transition"
           >
             Book Now
           </button>

@@ -12,7 +12,7 @@ export default function Hero () {
         <div className="mt-8 flex justify-center gap-4">
           <a
             href="/booking"
-            className="bg-black text-amber-300 font-semibold px-6 py-3 rounded-full shadow-lg transition animate-bounce"
+            className="bg-black text-amber-300 font-semibold px-6 py-3 rounded-full shadow-lg transition animate-bounce hover:bg-amber-300 hover:text-black hover:transition-linear"
           >
             Book Now
           </a>
