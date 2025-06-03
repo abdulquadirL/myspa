@@ -9,7 +9,7 @@ export default function Services() {
                     Our Spa Services
                 </h1>
             </header>
-            <p className="mb-4 text-black ">
+            <p className="mb-4 text-black/70 ">
                 At our spa, we offer a range of services designed to relax and rejuvenate you. 
                 From massages to facials, we have something for everyone.
             </p>

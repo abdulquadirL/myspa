@@ -1,29 +1,28 @@
+"use client";
 
-"use client"
-import './globals.css'
-import { ReactNode } from 'react'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
-import { SessionProvider } from 'next-auth/react'
-import Navbar from '@/components/Navbar'
-import BookingModal from '@/components/BookingModal'
-
-// export const metadata = {
-//     title: "Nirvana De Spa",
-//     description: "Exquisite Luxury Spa, Wellness and Beauty Palace in Abuja",
-//   };
+import "./globals.css";
+import { ReactNode } from "react";
+import React from "react";
+import BookingModal from "@/components/BookingModal";
+import AppProviders from "@/components/AppProviders";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
-      <body className="bg-white text-gray-800">
-        <SessionProvider>
-        <Navbar />
-        <BookingModal />
-        <main className="min-h-screen">{children}</main>
-        <Footer />
-        </SessionProvider>
+    <html lang="en" suppressHydrationWarning>
+      <body className="bg-amber-200 dark:bg-black/70 text-gray-800 dark:text-amber-300">
+        <AppProviders>
+          {/* Navigation bar */}
+          <Navbar />
+          {/* Booking modal */}
+          <BookingModal />
+          {/* Main content */}
+          <main className="min-h-screen">{children}</main>
+          {/* Footer */}
+          <Footer />
+        </AppProviders>
       </body>
     </html>
-  )
+  );
 }

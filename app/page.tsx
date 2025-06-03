@@ -1,6 +1,8 @@
 import AboutPage from '@/components/AboutUs';
 import Hero from '@/components/Hero';
+import MapWithProximity from '@/components/MapWithProximity';
 import Services from '@/components/Services';
+import Testimonials from '@/components/Testimonial';
 import React from 'react';
 
 export default function Home() {
@@ -12,6 +14,8 @@ export default function Home() {
       <Hero />
       <Services />
       <AboutPage />
+      <Testimonials/>
+      <MapWithProximity/>
     </div>
   );
 }
