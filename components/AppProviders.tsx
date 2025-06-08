@@ -4,7 +4,7 @@
 import { ReactNode } from "react";
 import { SessionProvider } from "next-auth/react";
 import useAutoDarkMode from "@/hooks/useAutoDarkMode";
-import { ThemeToggle } from "./ThemeToggle";
+import ThemeToggle from "./ThemeToggle";
 
 
 export default function AppProviders({ children }: { children: ReactNode }) {

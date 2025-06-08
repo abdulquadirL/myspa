@@ -55,9 +55,9 @@ export default function TestimonialSlider() {
   }, [])
 
   return (
-    <section className="bg-black/70 py-16 px-4 sm:px-6 lg:px-8">
+    <section className="bg-amber-50 py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto text-center">
-        <h2 className="text-3xl font-bold text-black mb-6">What Our Clients Say</h2>
+        <h2 className="text-3xl font-bold text-amber-300 mb-6">What Our Clients Say</h2>
         <div className="relative h-56 md:h-48 overflow-hidden">
           <AnimatePresence initial={false} custom={direction}>
             <motion.div
@@ -70,7 +70,7 @@ export default function TestimonialSlider() {
               transition={{ duration: 0.6 }}
               className="absolute w-full"
             >
-              <blockquote className="text-lg text-amber-300 italic px-6">
+              <blockquote className="text-lg text-gray-800 italic px-6">
                 “{testimonials[index].quote}”
               </blockquote>
               <div className="mt-4 text-amber-300 font-semibold">

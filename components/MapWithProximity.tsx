@@ -36,7 +36,7 @@ export default function MapWithProximity() {
   }, [])
 
   return (
-    <div className="w-full h-[400px] mt-10 relative">
+    <div className="w-full  h-[400px] mt-10 relative">
       <iframe
         width="100%"
         height="100%"

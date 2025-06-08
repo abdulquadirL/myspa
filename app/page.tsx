@@ -1,4 +1,4 @@
-import AboutPage from '@/components/AboutUs';
+import About from '@/components/About';
 import Hero from '@/components/Hero';
 import MapWithProximity from '@/components/MapWithProximity';
 import Services from '@/components/Services';
@@ -8,12 +8,12 @@ import React from 'react';
 export default function Home() {
   return (
     <div
-      className="min-h-screen items-center justify-center bg-cover bg-center"
-      style={{ backgroundImage: "url('/gold.jpg')" }}
+      className="min-h-screen items-center justify-center bg-cover bg-center "
+      
     >
       <Hero />
       <Services />
-      <AboutPage />
+      <About/>
       <Testimonials/>
       <MapWithProximity/>
     </div>

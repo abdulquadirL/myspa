@@ -11,7 +11,7 @@ import Footer from "@/components/Footer";
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="bg-amber-200 dark:bg-black/70 text-gray-800 dark:text-amber-300">
+      <body className="bg-amber-200 text-gray-800 dark:bg-gray-800 dark:text-amber-300">
         <AppProviders>
           {/* Navigation bar */}
           <Navbar />
