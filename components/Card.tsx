@@ -70,6 +70,7 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
+import Link from "next/link";
 
 interface CardProps {
   id: number;
@@ -79,6 +80,7 @@ interface CardProps {
   activeCard: number | null;
   setActiveCard: (id: number | null) => void;
 }
+
 
 const Card: React.FC<CardProps> = ({
   id,
@@ -93,6 +95,10 @@ const Card: React.FC<CardProps> = ({
   const handleToggle = () => {
     setActiveCard(isActive ? null : id);
   };
+
+  const handleClick = () => {
+    window.location.href = `/services#${id}`;
+  }
 
   return (
     <div
@@ -115,15 +121,18 @@ const Card: React.FC<CardProps> = ({
 
       {/* CTA Button (Visible only when image is hidden) */}
       {!isActive && (
+        <Link href={`/services#${id}`} scroll={false}>
         <button
           className="mt-4 inline-block bg-black text-amber-300 px-4 py-2 rounded-lg text-sm hover:bg-amber-300 hover:text-black hover:transition-linear"
           onClick={(e) => {
             e.stopPropagation(); // Prevent card toggle on button click
-            alert(`CTA clicked for ${title}`);
+            // alert(`CTA clicked for ${title}`);
+            handleClick();
           }}
         >
           Learn More
         </button>
+        </Link>
       )}
 
       {/* Image - Only visible when card is active */}

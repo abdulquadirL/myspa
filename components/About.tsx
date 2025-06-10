@@ -9,19 +9,19 @@ export default function About() {
       specialties: ['Swedish Massage', 'Deep Tissue', 'Hot Stone']
     },
     {
-      name: 'Emily Chen',
+      name: 'Adenike Adebayo',
       role: 'Master Esthetician',
       experience: '6 years',
       specialties: ['Anti-Aging Facials', 'Chemical Peels', 'Microdermabrasion']
     },
     {
-      name: 'Maria Rodriguez',
+      name: 'Hanifah Bello',
       role: 'Nail Specialist',
       experience: '5 years',
       specialties: ['Gel Manicures', 'Nail Art', 'Pedicure Treatments']
     },
     {
-      name: 'Jessica Kim',
+      name: 'Jessica Okeke',
       role: 'Lash Specialist',
       experience: '4 years',
       specialties: ['Lash Extensions', 'Lash Lifts', 'Brow Shaping']
@@ -33,7 +33,7 @@ export default function About() {
       {/* Hero Section */}
       <section className="bg-amber-50 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-light text-amber-300 dark:text-gray-800 mb-6 animate-fade-in">
+          <h1 className="text-3xl md:text-4xl font-bold text-amber-300 dark:text-gray-800 mb-6 animate-fade-in">
             About Nirvana Spa
           </h1>
           <p className="text-xl text-gray-800 max-w-3xl mx-auto animate-fade-in">
@@ -126,12 +126,12 @@ export default function About() {
                   </div>
                   <h3 className="text-lg font-light text-amber-300 mb-2">{member.name}</h3>
                   <p className="text-sm text-spa-gold mb-2">{member.role}</p>
-                  <p className="text-xs text-muted-foreground mb-3">{member.experience} experience</p>
+                  <p className="text-xs text-muted-foreground text-amber-50 mb-3 bg-stone-600">{member.experience} experience</p>
                   <div className="space-y-1">
                     {member.specialties.map((specialty) => (
                       <span
                         key={specialty}
-                        className="inline-block bg-spa-amber/10 text-spa-amber text-xs px-2 py-1 rounded-full mr-1 mb-1"
+                        className="inline-block text-gray-500 text-xs px-2 py-1 rounded-full mr-1 mb-1"
                       >
                         {specialty}
                       </span>

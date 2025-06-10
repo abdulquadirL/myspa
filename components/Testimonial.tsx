@@ -12,13 +12,13 @@ const testimonials = [
   },
   {
     name: 'Chinedu A.',
-    title: 'Lekki Phase 1',
+    title: 'Kubwa, Abuja',
     quote:
       'Hands down the best spa experience I’ve ever had. The staff is professional and attentive, and the environment is so calming.',
   },
   {
     name: 'Zainab K.',
-    title: 'Victoria Island',
+    title: 'Maitama, Abuja',
     quote:
       'Every visit leaves me refreshed and recharged. The aromatherapy session was divine. I always look forward to coming back.',
   },

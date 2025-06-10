@@ -59,12 +59,15 @@ export default function BookingModal() {
           >
             <option>Massage</option>
             <option>Facial</option>
+            <option>Salon Male</option>
+            <option>Salon Female</option>
+            <option>Body Treatment</option> 
             <option>Manicure & Pedicure</option>
             <option>Full Spa Package</option>
           </select>
           <button
             type="submit"
-            className="w-full bg-emerald-500 text-white py-2 rounded hover:bg-emerald-600"
+            className="w-full bg-amber-300 text-black py-2 rounded hover:bg-black hover:text-amber-300"
           >
             Confirm Booking
           </button>

@@ -24,10 +24,10 @@ export default function Footer() {
                 </svg>
               </a>
             </div>
-            <div className="flex space-x-4 w-1/4 mt-4">
-                <p className="text-white text-left"> Suite A9, Plot 162, Oladipo Diya Way, Gudu District, Abuja, Nigeria</p>
+            <div className="flex space-x-4 w-1/4 mt-4 py-8">
+                <p className="text-white text-left"> Suite A9, Century Mall, Plot 162, Oladipo Diya Way, Gudu District, Abuja, Nigeria</p>
             </div>
-            <p className="text-amber-300">&copy; {new Date().getFullYear()} Nirvana De Spa. All rights reserved.</p>
+            <p className=" text-amber-300">&copy; {new Date().getFullYear()} Nirvana De Spa. All rights reserved.</p>
         </footer>
     )
     

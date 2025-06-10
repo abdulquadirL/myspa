@@ -8,6 +8,7 @@ import AppProviders from "@/components/AppProviders";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
+
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
@@ -15,6 +16,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <AppProviders>
           {/* Navigation bar */}
           <Navbar />
+          <span
+            id="sr-notify"
+            aria-live="polite"
+            className="sr-only"
+          />
+
           {/* Booking modal */}
           <BookingModal />
           {/* Main content */}

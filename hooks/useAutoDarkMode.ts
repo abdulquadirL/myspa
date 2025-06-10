@@ -1,23 +1,30 @@
-'use client'
+'use client';
 
-import { useEffect } from 'react'
+import { useEffect } from 'react';
 
-export default function useAutoDarkMode() {
+const useAutoDarkMode = () => {
   useEffect(() => {
-    const root = document.documentElement
-    const savedTheme = localStorage.getItem('theme')
+    const root = document.documentElement;
 
-    if (savedTheme) {
-      // Respect stored preference
-      root.classList.toggle('dark', savedTheme === 'dark')
+    // Check localStorage for user preference
+    const savedTheme = localStorage.getItem('theme');
+
+    const setTheme = (theme: 'light' | 'dark') => {
+      if (theme === 'dark') {
+        root.classList.add('dark');
+      } else {
+        root.classList.remove('dark');
+      }
+    };
+
+    if (savedTheme === 'dark' || savedTheme === 'light') {
+      setTheme(savedTheme as 'dark' | 'light');
     } else {
-      // Set based on time of day
-      const hour = new Date().getHours()
-      const prefersDark = hour >= 19 || hour < 7
-      root.classList.toggle('dark', prefersDark)
-      localStorage.setItem('theme', prefersDark ? 'dark' : 'light')
+      const hour = new Date().getHours();
+      const isNight = hour >= 19 || hour < 6; // 7pm - 6am = dark mode
+      setTheme(isNight ? 'dark' : 'light');
     }
-  }, [])
-}
-// This hook automatically applies dark mode based on time of day or user preference.
-// It checks localStorage for a saved theme and applies it, or defaults to dark mode at night.
+  }, []);
+};
+
+export default useAutoDarkMode;

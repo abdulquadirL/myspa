@@ -19,8 +19,8 @@ export default function Navbar() {
   return (
     <nav className="bg-amber-200 shadow-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-        <Link href="/" className="text-2xl font-bold text-black">
-          Nirvanad'Spa
+        <Link href="/" className="text-2xl font-serif font-bold text-black">
+          nirvanadeSpa
         </Link>
 
         {/* Desktop Navigation */}
@@ -60,7 +60,7 @@ export default function Navbar() {
           </Link>
           <button
             onClick={openBookingModal}
-            className="w-full bg-emerald-500 text-white px-4 py-2 rounded-full hover:bg-emerald-600 transition"
+            className="w-full bg-black text-amber-300 px-4 py-2 rounded-full hover:bg-amber-300 transition"
           >
             Book Now
           </button>
