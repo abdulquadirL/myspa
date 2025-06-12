@@ -1,13 +1,7 @@
-// import { redirect } from 'next/navigation'
 
-// export default function AdminIndexPage() {
-//   redirect('/admin/login')
-// }
-
-// app/admin/page.tsx
+"use client"
 import dynamic from "next/dynamic";
 
-// Dynamically import BookingTable to improve performance and SSR compatibility
 const BookingTable = dynamic(() => import("@/components/Dashboard/BookingTable"), {
   ssr: false,
   loading: () => <div>Loading bookings...</div>,
