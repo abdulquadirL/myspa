@@ -1,42 +1,45 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Sun, Moon } from 'lucide-react';
+import { motion } from 'framer-motion';
 
-const getInitialTheme = (): boolean => {
-  if (typeof window !== 'undefined') {
-    const stored = localStorage.getItem('theme');
-    if (stored) return stored === 'dark';
-    return window.matchMedia('(prefers-color-scheme: dark)').matches;
-  }
-  return false;
-};
-
-const ThemeToggle: React.FC = () => {
-  const [isDark, setIsDark] = useState<boolean>(getInitialTheme);
+export default function ThemeToggle() {
+  const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
     const root = document.documentElement;
-    if (isDark) {
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const shouldUseDark = savedTheme
+      ? savedTheme === 'dark'
+      : prefersDark || new Date().getHours() < 6 || new Date().getHours() >= 19;
+
+    if (shouldUseDark) {
       root.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
     } else {
       root.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
     }
-  }, [isDark]);
 
-  const toggleTheme = () => setIsDark((prev) => !prev);
+    setIsDark(root.classList.contains('dark'));
+  }, []);
+
+  const toggleTheme = () => {
+    const root = document.documentElement;
+    const currentlyDark = root.classList.contains('dark');
+    root.classList.toggle('dark');
+    localStorage.setItem('theme', currentlyDark ? 'light' : 'dark');
+    setIsDark(!currentlyDark);
+  };
 
   return (
-    <button
+    <motion.button
       onClick={toggleTheme}
-      className="p-2 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-violet-500 dark:focus:ring-violet-400"
-      aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+      className="fixed top-4 right-4 z-50 px-4 py-2 text-sm bg-cream-600 text-white rounded-lg shadow-lg hover:bg-cream-300 transition dark:bg-amber-400 dark:text-black"
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, ease: 'easeOut' }}
     >
-      {isDark ? <Sun size={20} /> : <Moon size={20} />}
-    </button>
+      {isDark ? '☀' : '🌙 '}
+    </motion.button>
   );
-};
-
-export default ThemeToggle;
+}

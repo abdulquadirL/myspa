@@ -1,6 +1,21 @@
-import { createClient } from '@supabase/supabase-js';
+import { createBrowserClient } from '@supabase/ssr';
+import { cookies } from 'next/headers';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL as string;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string;
-
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+export const supabase = createBrowserClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  {
+    cookies: {
+      async get(name: string) {
+        const cookieStore = await cookies();
+        return cookieStore.get(name)?.value;
+      },
+      set(name: string, value: string, options?: any) {
+        // Implement set if needed, or leave as a no-op for SSR
+      },
+      remove(name: string, options?: any) {
+        // Implement remove if needed, or leave as a no-op for SSR
+      },
+    },
+  }
+);

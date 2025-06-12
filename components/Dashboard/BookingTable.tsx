@@ -183,10 +183,11 @@
 'use client';
 
 import React, { useState, useEffect, useMemo } from 'react';
-import Filters from './Filters';
+import Filters, { FiltersState } from './Filters';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { useSearchParams } from 'next/navigation';
 import useRealTimeBookings, { Booking } from '@/hooks/useRealTimeBookings';
+
 
 const PAGE_SIZE = 10;
 
@@ -309,8 +310,17 @@ export default function BookingTable() {
         setServiceFilter={setServiceFilter}
         dateFilter={dateFilter}
         setDateFilter={setDateFilter}
-        onExportCSV={exportCSV}
-      />
+        onExportCSV={exportCSV} filters={{
+          status: '',
+          search: '',
+          statusFilter: '',
+          service: '',
+          serviceFilter: '',
+          startDateFilter: undefined,
+          endDateFilter: undefined,
+          date: '',
+          dateFilter: ''
+        }} onChange={() => {}} />
 
       {loading ? (
         <p className="text-center text-gray-500 dark:text-gray-400">Loading bookings...</p>

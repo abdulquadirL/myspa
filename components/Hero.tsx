@@ -21,6 +21,14 @@ export default function Hero () {
     return () => clearInterval(interval);
   }, []);
 
+  const openBookingModal = () => {
+    const bookingModal = document.getElementById("bookingModal");
+    if (bookingModal) {
+      bookingModal.classList.remove("hidden");
+      bookingModal.classList.add("flex");
+    }
+  }
+
     return (
         <section className="relative w-full h-[80vh] overflow-hidden">
           {images.map((img, index) => (
@@ -41,12 +49,19 @@ export default function Hero () {
           Experience premium massage therapy, facials, and holistic spa treatments in Abuja. Escape into wellness — you deserve it.
         </p>
         <div className="mt-8 flex justify-center gap-4">
-          <Link
+          {/* <Link
             href="/booking"
             className="bg-black text-amber-300 font-semibold px-6 py-3 rounded-full shadow-lg transition animate-bounce hover:bg-amber-300 hover:text-black hover:transition-linear"
           >
             Book Now
-          </Link>
+          </Link> */}
+            <Button
+              onClick={openBookingModal}
+              variant="primary"
+              className="bg-black text-amber-300 font-semibold px-6 py-3 rounded-full shadow-lg transition animate-bounce hover:bg-amber-300 hover:text-black hover:transition-linear"
+            >
+              Book Now
+            </Button>
           <Link
             href="/services"
             className="border border-white hover:bg-amber-300 hover:text-black hover:transition-linear text-white font-semibold px-6 py-3 rounded-full transition"

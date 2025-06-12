@@ -4,7 +4,30 @@ import React, { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
+// ...other imports
+
+// Define FiltersState type if not already defined or imported
+export type FiltersState = {
+  status: string;
+  search: string;
+  statusFilter: string;
+  service: string;
+  serviceFilter: string;
+  startDateFilter?: string;
+  endDateFilter?: string;
+  date: string;
+  dateFilter: string;
+};
+
+
+
+// const Filters = ({ filters, onChange }: FiltersProps) => {
+//   // ...component code
+// };
+
 export type FiltersProps = {
+  filters: FiltersState;
+  onChange: (newFilters: Partial<FiltersState>) => void;
   search: string;
   setSearch: (val: string) => void;
   statusFilter: string;
@@ -27,10 +50,7 @@ const Filters: React.FC<FiltersProps> = ({
   setStatusFilter,
   serviceFilter,
   setServiceFilter,
-  startDateFilter,
-  setStartDateFilter,
   endDateFilter,
-  setEndDateFilter,
   setDateFilter,
   onExportCSV,
 }) => {

@@ -1,8 +1,7 @@
-"use client"
+"use client";
 
-import React, { useState } from "react"
+import React, { useState } from "react";
 import Card from "./Card";
-
 
 const cardsData = [
   {
@@ -23,11 +22,10 @@ const cardsData = [
     content: "Experience our unisex salon services for all your grooming needs.",
     imageUrl: "/nirvana/salon.jpg",
   },
-  
   {
     id: 5,
     title: "Manicures & Pedicures",
-    content: "Indulge in holistic therapies that promote overall wellness",
+    content: "Indulge in holistic therapies that promote overall wellness.",
     imageUrl: "/nirvana/pedicure.jpg",
   },
   {
@@ -44,53 +42,42 @@ const cardsData = [
   },
 ];
 
-
 export default function Services() {
+  const [activeCard, setActiveCard] = useState<number | null>(null);
 
-    const [activeCard, setActiveCard] = useState<number | null>(null);
-
-    return (
-        <section
-            className=" mx-auto p-8 bg-cover bg-amber-50 text-gray-800 dark:bg-gray-800 dark:text-amber-300 rounded-lg shadow-lg"
-            aria-labelledby="services-heading"
-        >
-            <div className="w-4xl p-8 ">
-                <header>
-                <h2 id="services-heading" className="text-3xl text-amber-300 text-center font-bold mb-6">
-                    Our Spa Services
-                </h2>
-                </header>
-                <p className="mb-4 ">
-                    At our spa, we offer a range of services designed to relax and rejuvenate you. 
-                    From massages to facials, we have something for everyone.
-                </p>
-                <ul className="list-disc pl-5 space-y-2">
-                    <li>Relaxing Massages</li>
-                    <li>Rejuvenating Facials</li>
-                    <li>Body Treatments</li>
-                    <li>Manicures and Pedicures</li>
-                    <li>Waxing Services</li>
-                    <li>Unisex Hair Saloon</li>
-                    <li>Wellness Packages</li>
-                </ul>
-                
-            </div>
-            {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center p-6">
-                    
-                
-            </div> */}
-            <div className="min-h-screen bg-[url(/nirvana/nails.jpg)] dark:bg-gray-100 p-6">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                        {cardsData.map((card) => (
-                        <Card
-                            key={card.id} 
-                            {...card}
-                            activeCard={activeCard}
-                            setActiveCard={setActiveCard}
-                        />
-                        ))}
-                    </div>
-                </div>
-        </section>
-    );
+  return (
+    <section
+      className="mx-auto p-4 sm:p-6 md:p-8 bg-amber-200 dark:bg-gray-900 text-gray-800 dark:text-amber-300 rounded-lg shadow-lg transition-colors duration-300"
+      aria-labelledby="services-heading"
+    >
+      <div className="max-w-6xl mx-auto px-4 py-3 sm:px-6 lg:px-8">
+        <header>
+          <h2
+            id="services-heading"
+            className="text-2xl sm:text-3xl text-amber-400 dark:text-amber-300 text-center font-bold mb-6"
+          >
+            Our Spa Services
+          </h2>
+        </header>
+        <p className="mb-4 text-base sm:text-lg text-center">
+          At our spa, we offer a range of services designed to relax and rejuvenate you.
+          From massages to facials, we have something for everyone.
+        </p>
+        
+        <div className="w-full min-h-[60vh] ">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
+          {cardsData.map((card) => (
+            <Card
+              key={card.id}
+              {...card}
+              activeCard={activeCard}
+              setActiveCard={setActiveCard}
+            />
+          ))}
+        </div>
+      </div>
+      </div>
+    
+    </section>
+  );
 }

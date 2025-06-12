@@ -19,11 +19,11 @@ export default function Button({
   ...props
 }: ButtonProps) {
   const baseStyles =
-    'inline-flex items-center justify-center px-4 py-2 rounded-lg font-medium transition duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2'
+    'inline-flex items-center justify-center px-4 py-2 rounded-full font-medium transition duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2'
 
   const variants: Record<Variant, string> = {
     primary:
-      'bg-emerald-600 text-white hover:bg-emerald-700 focus:ring-emerald-500 dark:bg-emerald-500 dark:hover:bg-emerald-600 dark:text-black',
+      'bg-black text-amber-300 px-4 py-2 rounded-full hover:bg-amber-300 hover:text-black transition',
     secondary:
       'bg-amber-500 text-black hover:bg-amber-600 focus:ring-amber-400 dark:bg-amber-400 dark:text-black dark:hover:bg-amber-500',
     outline:

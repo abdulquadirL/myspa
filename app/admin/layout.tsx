@@ -1,27 +1,33 @@
-// app/admin/layout.tsx
-import "@/app/globals.css";
-import type { Metadata } from "next";
-import { ReactNode } from "react";
-import { SessionProvider } from "next-auth/react";
 
-export const metadata: Metadata = {
-  title: "Admin Panel | Nirvana De Spa",
-  description: "Manage bookings, view analytics, and control your spa services.",
+// app/admin/layout.tsx
+import { ReactNode } from "react";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { redirect } from "next/navigation";
+import "@/app/globals.css";
+import Greeting from "@/components/Dashboard/Greeting";
+import LogoutButton from "@/components/Dashboard/LogoutButton";
+
+
+export const metadata = {
+  title: "Admin Dashboard - Nirvana De Spa",
+  description: "Manage spa bookings and client data",
 };
 
-export default function AdminLayout({ children }: { children: ReactNode }) {
+export default async function AdminLayout({ children }: { children: ReactNode }) {
+  const session = await getServerSession(authOptions);
+
+  if (!session || session.user?.role !== "admin") {
+    redirect("/admin/login");
+  }
+
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className="bg-gray-50 dark:bg-zinc-900 text-gray-800 dark:text-amber-200 min-h-screen">
-        <SessionProvider>
-          <div className="max-w-6xl mx-auto px-4 py-6 space-y-4">
-            <header className="text-xl font-bold text-emerald-700 dark:text-amber-300">
-              Nirvana Admin Panel
-            </header>
-            <main>{children}</main>
-          </div>
-        </SessionProvider>
-      </body>
-    </html>
+    <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white p-4">
+      <header className="flex justify-between items-center mb-6">
+        <Greeting name={session.user?.name || "Admin"} />
+        <LogoutButton />
+      </header>
+      <main>{children}</main>
+    </div>
   );
 }

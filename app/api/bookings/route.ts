@@ -1,13 +1,9 @@
 import { NextResponse } from "next/server";
 import { supabase } from "@/lib/supabase";
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "../auth/[...nextauth]";
 import type { SessionStrategy } from "next-auth";
+import { authOptions } from "../auth/[...nextauth]/route";
 export async function POST(request: Request) {
-  // Ensure session.strategy is typed correctly
-  if (authOptions.session && typeof authOptions.session.strategy === "string") {
-    (authOptions.session.strategy as SessionStrategy);
-  }
   const session = await getServerSession(authOptions);
 
   if (!session) {
@@ -26,7 +22,7 @@ export async function POST(request: Request) {
 
   const { data: booking, error } = await supabase
     .from("bookings")
-    .insert([{ name, email, service, date, phone, user_id: session.user.id }])
+    .insert([{ name, email, service, date, phone, user_id: session.user.email }])
     .select()
     .single();
 

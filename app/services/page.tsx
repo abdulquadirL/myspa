@@ -1,6 +1,5 @@
 import { Card } from "@/components/ui/card";
 
-
 export default function Services() {
   return (
     <div className="bg-cream p-6 rounded-lg shadow-md max-w-4xl mx-auto mt-8">
