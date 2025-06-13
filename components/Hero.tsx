@@ -49,12 +49,6 @@ export default function Hero () {
           Experience premium massage therapy, facials, and holistic spa treatments in Abuja. Escape into wellness — you deserve it.
         </p>
         <div className="mt-8 flex justify-center gap-4">
-          {/* <Link
-            href="/booking"
-            className="bg-black text-amber-300 font-semibold px-6 py-3 rounded-full shadow-lg transition animate-bounce hover:bg-amber-300 hover:text-black hover:transition-linear"
-          >
-            Book Now
-          </Link> */}
             <Button
               onClick={openBookingModal}
               variant="primary"

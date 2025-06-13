@@ -1,4 +1,5 @@
 import { Card, CardContent } from '@/components/ui/card';
+import Image from 'next/image';
 
 interface TeamMember {
   name: string;
@@ -41,7 +42,7 @@ export default function About() {
       <section className="py-16 sm:py-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-3xl md:text-4xl font-bold text-amber-300 dark:text-amber-200 mb-6 animate-fade-in">
-            About Nirvana Spa
+            About Nirvana De Spa
           </h1>
           <p className="text-lg sm:text-xl text-gray-800 dark:text-amber-100 max-w-3xl mx-auto animate-fade-in">
             Your sanctuary for wellness, beauty, and rejuvenation in the heart of the city of Abuja.
@@ -57,18 +58,18 @@ export default function About() {
               <h2 className="text-2xl sm:text-3xl font-light text-amber-300 dark:text-amber-200 mb-6">Our Story</h2>
               <div className=" space-y-4 text-gray-700 dark:text-amber-100 leading-relaxed">
                 <p>
-                  Nirvana Spa began as a vision to create a tranquil escape from the hustle and bustle of everyday life. Our founders, passionate about wellness and beauty, sought to establish a sanctuary where guests could truly unwind and reconnect with themselves.
+                  Nirvana De Spa began as a vision to create a tranquil escape from the hustle and bustle of everyday life. Our founders, passionate about wellness and beauty, sought to establish a sanctuary where guests could truly unwind and reconnect with themselves.
                 </p>
                 <p>
                   Today, we're proud to offer a comprehensive range of luxury spa services in our state-of-the-art facility. From therapeutic massages to rejuvenating facials, precision nail care to stunning lash enhancements, every treatment is designed with your comfort and satisfaction in mind.
                 </p>
                 <p>
-                  At Nirvana Spa, we believe that self-care isn't a luxury—it's a necessity. Our mission is to provide you with an exceptional spa experience that leaves you feeling refreshed, renewed, and radiant.
+                  At Nirvana De Spa, we believe that self-care isn't a luxury—it's a necessity. Our mission is to provide you with an exceptional spa experience that leaves you feeling refreshed, renewed, and radiant.
                 </p>
               </div>
             </div>
             <div className="w-full h-64 sm:h-96 bg-gradient-to-br from-amber-200 to-amber-400 dark:from-gray-700 dark:to-gray-900 rounded-2xl flex items-center justify-center animate-fade-in overflow-hidden">
-              <img
+              <Image
                 src="/nirvana/reception.jpg"
                 alt="Nirvana Spa Story"
                 className="w-full h-full object-cover rounded-2xl"
