@@ -1,5 +1,4 @@
-
-import NextAuth from 'next-auth'
+import NextAuth, { NextAuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
@@ -22,7 +21,7 @@ declare module "next-auth" {
   }
 }
 
-export const authOptions = {
+export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       name: 'Credentials',
@@ -33,9 +32,13 @@ export const authOptions = {
       async authorize(credentials) {
         const supabase = createRouteHandlerClient({ cookies })
 
+        if (!credentials?.email || !credentials?.password) {
+          return null
+        }
+
         const { data: { user }, error: authError } = await supabase.auth.signInWithPassword({
-          email: credentials?.email!,
-          password: credentials?.password!,
+          email: credentials.email,
+          password: credentials.password,
         })
 
         if (authError || !user) return null
