@@ -13,8 +13,7 @@ export default function AdminDashboardPage() {
       <h1 className="text-3xl font-bold text-emerald-700 dark:text-emerald-300">
         Bookings Dashboard
       </h1>
-      <BookingTable />
-      
+      <BookingTable bookings={[]} />      
     </div>
   );
 }

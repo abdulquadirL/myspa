@@ -25,7 +25,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <main className="min-h-screen">{children}</main>
           <Footer />
         </SessionProvider>
+        
       </body>
+      
     </html>
   );
 }

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import Button from './ui/Button';
 
 export default function Navbar() {
@@ -21,10 +22,12 @@ export default function Navbar() {
     <nav className="bg-amber-200 shadow-md sticky top-0 z-50">
       <div className="max-w-6xl mx-auto px-4 py-3 sm:px-6 lg:px-8 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
-          <img
+          <Image
             src="/nirvana/logo.png"
             alt="Nirvana De Spa Logo"
             className="h-12 w-auto object-contain"
+            width={48}
+            height={48}
           />
           <h2 className="text-sm sm:text-xxsm lg:text-xl font-bold font-serif text-gray-800">
             nirvana de spa    

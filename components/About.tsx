@@ -70,6 +70,8 @@ export default function About() {
             </div>
             <div className="w-full h-64 sm:h-96 bg-gradient-to-br from-amber-200 to-amber-400 dark:from-gray-700 dark:to-gray-900 rounded-2xl flex items-center justify-center animate-fade-in overflow-hidden">
               <Image
+                width={800}
+                height={600}
                 src="/nirvana/reception.jpg"
                 alt="Nirvana Spa Story"
                 className="w-full h-full object-cover rounded-2xl"
