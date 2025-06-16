@@ -23,13 +23,6 @@ export default function Hero () {
 
   }, []);
 
-//   const openBookingModal = () => {
-//   setIsModalOpen(true);
-// };
-
-// const closeBookingModal = () => {
-//   setIsModalOpen(false);
-// };
 
   const openBookingModal = () => {
     const bookingModal = document.getElementById("bookingModal");

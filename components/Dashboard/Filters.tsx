@@ -5,6 +5,15 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import Button from "@/components/ui/Button";
 
+type FiltersState = {
+  service?: string;
+  date?: string;
+  search?: string;
+  statusFilter?: string;
+  serviceFilter?: string;
+  dateFilter?: string;
+};
+
 type FiltersProps = {
   selectedService?: string;
   selectedDate?: string;
@@ -18,10 +27,10 @@ type FiltersProps = {
   setDateFilter: React.Dispatch<React.SetStateAction<string>>;
   onExportCSV: () => void;
   filters: any; // You may want to type this more strictly
-  onChange: () => void;
+  onChange: (newFilters: Partial<FiltersState>) => void
 };
 
-const Filters: React.FC<FiltersProps> = ({ selectedService, selectedDate }) => {
+const Filters: React.FC<FiltersProps> = ({ }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
 

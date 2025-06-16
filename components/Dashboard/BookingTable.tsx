@@ -13,7 +13,7 @@ type BookingTableProps = {
 
 const PAGE_SIZE = 10;
 
-const BookingTable: React.FC<BookingTableProps> = ({ bookings }) => {
+const BookingTable: React.FC<BookingTableProps> = ({  }) => {
   const supabase = createClientComponentClient();
   const searchParams = useSearchParams();
 

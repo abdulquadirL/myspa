@@ -11,7 +11,7 @@ import Pagination from "@/components/Dashboard/Pagination";
 import Filters from "@/components/Dashboard/Filters";
 
 interface Booking {
-  id: number;
+  id: string;
   name: string;
   email: string;
   service: string;
@@ -62,10 +62,8 @@ export default function Dashboard({ bookings: initialBookings, userName }: { boo
 
   // Setup realtime subscription for new bookings
   useRealTimeBookings({
-    onNewBooking: (newBooking: any) => {
-      // Convert id to number to match local Booking type
-      const bookingWithNumberId = { ...newBooking, id: Number(newBooking.id) };
-      setBookings((prev) => [bookingWithNumberId, ...prev]);
+    onNewBooking: (newBooking: Booking) => {
+      setBookings((prev) => [newBooking, ...prev]);
       play();
     }
   });

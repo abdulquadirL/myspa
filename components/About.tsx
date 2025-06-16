@@ -61,10 +61,10 @@ export default function About() {
                   Nirvana De Spa began as a vision to create a tranquil escape from the hustle and bustle of everyday life. Our founders, passionate about wellness and beauty, sought to establish a sanctuary where guests could truly unwind and reconnect with themselves.
                 </p>
                 <p>
-                  Today, we're proud to offer a comprehensive range of luxury spa services in our state-of-the-art facility. From therapeutic massages to rejuvenating facials, precision nail care to stunning lash enhancements, every treatment is designed with your comfort and satisfaction in mind.
+                  Today, we&apos;re proud to offer a comprehensive range of luxury spa services in our state-of-the-art facility. From therapeutic massages to rejuvenating facials, precision nail care to stunning lash enhancements, every treatment is designed with your comfort and satisfaction in mind.
                 </p>
                 <p>
-                  At Nirvana De Spa, we believe that self-care isn't a luxury—it's a necessity. Our mission is to provide you with an exceptional spa experience that leaves you feeling refreshed, renewed, and radiant.
+                  At Nirvana De Spa, we believe that self-care isn&apos;t a luxury—it&apos;s a necessity. Our mission is to provide you with an exceptional spa experience that leaves you feeling refreshed, renewed, and radiant.
                 </p>
               </div>
             </div>
