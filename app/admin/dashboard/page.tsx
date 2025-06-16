@@ -17,13 +17,7 @@ interface Booking {
   date: string;
   status?: string;
   created_at?: string;
-  [key: string]: any;
-}
-
-interface PostgresInsertPayload<T> {
-  new: T;
-  old: T | null;
-  [key: string]: any;
+  [key: string]: string | undefined;
 }
 
 export default function AdminDashboard() {
