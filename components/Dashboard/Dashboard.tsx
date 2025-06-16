@@ -1,44 +1,3 @@
-// "use client";
-
-// import { signOut } from "next-auth/react";
-// import Greeting from "./Greeting";
-// import BookingTable from "./BookingTable";
-// import Filters from "./Filters";
-// import Pagination from "./Pagination";
-// import { useSearchParams } from "next/navigation";
-
-// interface DashboardProps {
-//   admin: {
-//     name?: string | null;
-//     email?: string | null;
-//   };
-// }
-
-// export default function Dashboard({ admin }: DashboardProps) {
-//   const searchParams = useSearchParams();
-
-//   return (
-//     <section className="p-6 space-y-6">
-//       <div className="flex justify-between items-center">
-//         <Greeting name={admin?.name || "Admin"} />
-
-//         <button
-//           onClick={() => signOut()}
-//           className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition"
-//         >
-//           Logout
-//         </button>
-//       </div>
-
-//         <Filters />
-
-//       <BookingTable searchParams={searchParams} />
-
-//       <Pagination />
-//     </section>
-//   );
-// }
-
 
 "use client";
 
@@ -140,44 +99,43 @@ export default function Dashboard({ bookings: initialBookings, userName }: { boo
   return (
     <div className="p-6 max-w-7xl mx-auto">
       <header className="flex justify-between items-center mb-6">
-        <Greeting name={userName} />
-        <div className="flex space-x-4">
-          <button
-            onClick={exportCSV}
-            className="bg-emerald-600 text-white px-4 py-2 rounded hover:bg-emerald-700 transition"
-          >
-            Export CSV
-          </button>
-          <button
-            onClick={() => signOut()}
-            className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition"
-          >
-            Logout
-          </button>
-        </div>
+      <Greeting name={userName} />
+      <div className="flex space-x-4">
+        <button
+        onClick={exportCSV}
+        className="bg-emerald-600 text-white px-4 py-2 rounded hover:bg-emerald-700 transition"
+        >
+        Export CSV
+        </button>
+        <button
+        onClick={() => signOut()}
+        className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition"
+        >
+        Logout
+        </button>
+      </div>
       </header>
 
       <Filters
         search={filters.search}
-        setSearch={(search: string) => handleFiltersChange({ search })}
+        setSearch={value => handleFiltersChange({ search: typeof value === "string" ? value : "" })}
         serviceFilter={filters.service}
-        setServiceFilter={(service: string) => handleFiltersChange({ service })}
+        setServiceFilter={value => handleFiltersChange({ service: typeof value === "string" ? value : "" })}
         statusFilter={filters.status}
-        setStatusFilter={(status: string) => handleFiltersChange({ status })}
-        startDateFilter={filters.startDate}
-        setStartDateFilter={(startDate: string) => handleFiltersChange({ startDate })}
-        endDateFilter={filters.endDate}
-        setEndDateFilter={(endDate: string) => handleFiltersChange({ endDate })}
-        onExportCSV={exportCSV} dateFilter={""} setDateFilter={function (val: string): void {
-          
-        } }      />
+        setStatusFilter={value => handleFiltersChange({ status: typeof value === "string" ? value : "" })}
+        dateFilter={filters.startDate} 
+        setDateFilter={value => handleFiltersChange({ startDate: typeof value === "string" ? value : "" })}
+        filters={filters}
+        onChange={handleFiltersChange}
+        onExportCSV={exportCSV}
+      />
 
-      <BookingTable  />
+      <BookingTable bookings={[]}  />
 
       <Pagination
-        currentPage={currentPage}
-        onPageChange={setCurrentPage}
-        totalPages={Math.ceil(bookings.length / pageSize)} 
+      currentPage={currentPage}
+      onPageChange={setCurrentPage as (page: number) => void}
+      totalPages={Math.ceil(bookings.length / pageSize)} 
       />
     </div>
   );

@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Header() {
     return (
         <header className="bg-pink-800  p-4 shadow">
@@ -6,8 +8,8 @@ export default function Header() {
                     Nirvana De Spa
                 </h1>
                 <nav className="space-x-4">
-                    <a href="/" className="mr-4 hover:text-white">Home</a>
-                    <a href="/booking" className="text-white hover:text-pink-400">Book a Session</a>
+                    <Link href="/" className="mr-4 hover:text-white">Home</Link>
+                    <Link href="/booking" className="text-white hover:text-pink-400">Book a Session</Link>
                 </nav>
             </div>
         </header>

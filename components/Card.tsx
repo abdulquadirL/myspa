@@ -2,6 +2,7 @@ import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 interface CardProps {
   id: number;
@@ -76,7 +77,10 @@ const Card: React.FC<CardProps> = ({
             transition={{ duration: 0.4 }}
             className="overflow-hidden mt-4"
           >
-            <img
+            <Image
+              width={500} 
+              height={300}
+              loading="lazy"
               src={imageUrl}
               alt={title}
               className="rounded-lg w-full h-auto"

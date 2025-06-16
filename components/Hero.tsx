@@ -1,3 +1,4 @@
+
 "use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -12,27 +13,35 @@ export default function Hero () {
     "/nirvana/nails.jpg",
   ];
   const [currentImage, setCurrentImage] = useState(0);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImage((prev) => (prev + 1) % images.length);
     }, 5000); // change image every 5 seconds
     return () => clearInterval(interval);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, []);
 
+//   const openBookingModal = () => {
+//   setIsModalOpen(true);
+// };
+
+// const closeBookingModal = () => {
+//   setIsModalOpen(false);
+// };
+
   const openBookingModal = () => {
-    setIsModalOpen(true);
-  };
+    const bookingModal = document.getElementById("bookingModal");
+    if (bookingModal) {
+      bookingModal.classList.remove("hidden");
+      bookingModal.classList.add("flex");
+    }
+  }
 
-  const closeBookingModal = () => {
-    setIsModalOpen(false);
-  };
-
-  return (
-    <section className="relative w-full h-[80vh] overflow-hidden">
-      {images.map((img, index) => (
+    return (
+        <section className="relative w-full h-[80vh] overflow-hidden">
+          {images.map((img, index) => (
         <div
           key={index}
           className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${
@@ -40,8 +49,8 @@ export default function Hero () {
           }`}
           style={{ backgroundImage: `url(${img})` }}
         />
-      ))}
-
+         ))}
+      
       <div className=" absolute inset-0 bg-black/50 z-10 flex flex-col justify-center items-center text-white text-center px-4">
         <h1 className="text-4xl md:text-5xl font-extrabold leading-tight ">Rejuvenate Your Body.</h1>
           <h1 className="text-4xl md:text-5xl font-extrabold text-amber-300">Refresh Your Mind.</h1> 
