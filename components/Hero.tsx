@@ -21,7 +21,7 @@ export default function Hero () {
     }, 5000); // change image every 5 seconds
     return () => clearInterval(interval);
 
-  }, []);
+  }, [images.length]);
 
 
   const openBookingModal = () => {

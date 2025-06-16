@@ -1,7 +1,8 @@
-import NextAuth, { NextAuthOptions } from 'next-auth'
+import NextAuth, { NextAuthOptions, Session, User as NextAuthUser } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
+import { JWT } from "next-auth/jwt";
 
 // Extend the Session and User types to include 'role'
 declare module "next-auth" {
@@ -61,14 +62,14 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ token, user }: { token: any; user?: any }) {
+    async jwt({ token, user }: { token: JWT; user?: NextAuthUser }) {
       if (user) {
         token.role = user.role
       }
       return token
     },
-    async session({ session, token }: { session: import("next-auth").Session, token: any }) {
-      session.user.role = token.role
+    async session({ session, token }: { session: Session; token: JWT }) {
+      session.user.role = token.role as string | undefined
       return session
     },
   },

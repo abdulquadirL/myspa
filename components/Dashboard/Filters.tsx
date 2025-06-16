@@ -7,6 +7,7 @@ import Button from "@/components/ui/Button";
 
 type FiltersState = {
   service?: string;
+  status?: string;
   date?: string;
   search?: string;
   statusFilter?: string;
@@ -26,7 +27,7 @@ type FiltersProps = {
   dateFilter: string;
   setDateFilter: React.Dispatch<React.SetStateAction<string>>;
   onExportCSV: () => void;
-  filters: any; // You may want to type this more strictly
+  filters: FiltersState; // You may want to type this more strictly
   onChange: (newFilters: Partial<FiltersState>) => void
 };
 
