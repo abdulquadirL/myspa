@@ -124,6 +124,12 @@ const BookingTable: React.FC<BookingTableProps> = ({  }) => {
   return (
     <div className="p-4 bg-white dark:bg-zinc-900 rounded shadow">
       <Filters
+        filters={{
+          search,
+          status: statusFilter,
+          service: serviceFilter,
+          date: dateFilter
+        }}
         search={search}
         setSearch={setSearch}
         statusFilter={statusFilter}
@@ -133,17 +139,7 @@ const BookingTable: React.FC<BookingTableProps> = ({  }) => {
         dateFilter={dateFilter}
         setDateFilter={setDateFilter}
         onExportCSV={exportCSV} 
-        filters={{
-          status: '',
-          search: '',
-          statusFilter: '',
-          service: '',
-          serviceFilter: '',
-          startDateFilter: undefined,
-          endDateFilter: undefined,
-          date: '',
-          dateFilter: ''
-        }} onChange={() => {}} />
+        onChange={() => {}} />
 
       {loading ? (
         <p className="text-center text-gray-500 dark:text-gray-400">Loading bookings...</p>
