@@ -4,7 +4,7 @@
 
 [build.environment]
   NODE_VERSION = "18"
-  NEXTAUTH_URL = "https://nirvanadespa.ng.netlify.app"
+  NEXTAUTH_URL = "https://nirvanadespang.netlify.app"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
