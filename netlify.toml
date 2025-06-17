@@ -8,7 +8,7 @@
 
   NEXT_PUBLIC_SUPABASE_URL = "https://zvpmlvtyviclabugikkh.supabase.co"
   NEXT_PUBLIC_SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp2cG1sdnR5dmljbGFidWdpa2toIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk1NDU3NTMsImV4cCI6MjA2NTEyMTc1M30.jOHD3bv-dxrt6BaeWA7MjZ-dFnKD8rQAbbBNI3Xj4-A"
-  SUPABASE_SERVICE_ROLE_KEY = ""eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp2cG1sdnR5dmljbGFidWdpa2toIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc0OTU0NTc1MywiZXhwIjoyMDY1MTIxNzUzfQ.5IwUY_qcDBrInJmELGoq_owZBFDJwLCcq0AtYTVKN10
+  SUPABASE_SERVICE_ROLE_KEY = ""
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
