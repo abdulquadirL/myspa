@@ -3,7 +3,7 @@
 
 import { ReactNode } from 'react'
 import useAutoDarkMode from '@/hooks/useAutoDarkMode'
-import { ThemeToggle } from './ThemeToggle'
+import ThemeToggle from './ThemeToggle'
 
 export default function ClientWrapper({ children }: { children: ReactNode }) {
   useAutoDarkMode()

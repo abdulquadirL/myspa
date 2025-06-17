@@ -1,8 +1,7 @@
 'use client'
 
 import { createContext, useContext, useState } from 'react'
-import { Session, SupabaseClient } from '@supabase/supabase-js'
-import { createClient } from '@/lib/supabase/client'
+import { createClient, Session, SupabaseClient } from '@supabase/supabase-js'
 
 type SupabaseContext = {
   supabase: SupabaseClient
@@ -18,7 +17,9 @@ export default function SupabaseProvider({
   children: React.ReactNode
   initialSession: Session | null
 }) {
-  const [supabase] = useState(() => createClient())
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL as string
+  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string
+  const [supabase] = useState(() => createClient(supabaseUrl, supabaseKey))
 
   return (
     <Context.Provider value={{ supabase, session: initialSession }}>

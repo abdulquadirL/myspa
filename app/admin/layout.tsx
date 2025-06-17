@@ -1,12 +1,10 @@
-
-// app/admin/layout.tsx
 import { ReactNode } from "react";
 import { getServerSession, Session } from "next-auth";
 import { redirect } from "next/navigation";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import "@/app/globals.css";
-import Greeting from "@/components/Dashboard/Greeting";
 import LogoutButton from "@/components/Dashboard/LogoutButton";
+import { authOptions } from "@/lib/authOptions.";
+import Greeting from "@/components/Dashboard/Greeting";
 
 
 export const metadata = {

@@ -1,7 +1,7 @@
 'use client'
 
+import { supabase } from '@/lib/supabase'
 import { useEffect } from 'react'
-import { supabase } from '@/lib/supabaseClient'
 
 export default function BookingListener() {
   useEffect(() => {
