@@ -1,24 +1,109 @@
-import NextAuth, { NextAuthOptions } from "next-auth";
-import CredentialsProvider from "next-auth/providers/credentials";
-import { SupabaseAdapter } from "@next-auth/supabase-adapter";
-import bcrypt from "bcryptjs";
-import { createClient } from "@supabase/supabase-js";
+// import NextAuth from "next-auth"
+// import CredentialsProvider from "next-auth/providers/credentials"
+// import { SupabaseAdapter } from "@next-auth/supabase-adapter"
+// import { createServerClient } from "@supabase/ssr"
+// import { cookies, headers } from "next/headers"
+// import bcrypt from "bcryptjs"
 
-// Validate env
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-const nextAuthSecret = process.env.NEXTAUTH_SECRET;
+// // Extend NextAuth session user type to include 'id'
+// declare module "next-auth" {
+//   interface Session {
+//     user?: {
+//       id?: string
+//       name?: string | null
+//       email?: string | null
+//       image?: string | null
+//     }
+//   }
+// }
 
-if (!supabaseUrl) {
-  throw new Error("NEXT_PUBLIC_SUPABASE_URL is not defined");
-}
+// // Configure NextAuth handler
+// const handler = NextAuth({
+//   providers: [
+//     CredentialsProvider({
+//       name: "Credentials",
+//       credentials: {
+//         email: { label: "Email", type: "email" },
+//         password: { label: "Password", type: "password" },
+//       },
+//       async authorize(credentials) {
+//         if (!credentials?.email || !credentials?.password) return null
 
-if (!supabaseServiceRoleKey) {
-  throw new Error("SUPABASE_SERVICE_ROLE_KEY is not defined");
-}
+//         const supabase = createServerClient(
+//           process.env.NEXT_PUBLIC_SUPABASE_URL!,
+//           process.env.SUPABASE_SERVICE_ROLE_KEY!,
+//           { cookies: cookies(), headers: headers() }
+//         )
 
-if (!nextAuthSecret) {
-  throw new Error("NEXTAUTH_SECRET is not defined");
+//         const { data: user, error } = await supabase
+//           .from("users")
+//           .select("*")
+//           .eq("email", credentials.email)
+//           .single()
+
+//         if (error || !user) return null
+
+//         const isValid = await bcrypt.compare(credentials.password, user.hashed_password)
+//         if (!isValid) return null
+
+//         return {
+//           id: user.id,
+//           name: user.name,
+//           email: user.email,
+//         }
+//       },
+//     }),
+//   ],
+
+//   adapter: SupabaseAdapter({
+//     url: process.env.NEXT_PUBLIC_SUPABASE_URL!,
+//     secret: process.env.SUPABASE_SERVICE_ROLE_KEY!,
+//   }),
+
+//   session: {
+//     strategy: "jwt",
+//   },
+
+//   pages: {
+//     signIn: "/admin/login",
+//   },
+
+//   callbacks: {
+//     async jwt({ token, user }) {
+//       if (user) token.sub = user.id
+//       return token
+//     },
+//     async session({ session, token }) {
+//       if (token?.sub && session.user) session.user.id = token.sub
+//       return session
+//     },
+//   },
+
+//   secret: process.env.NEXTAUTH_SECRET!,
+// })
+
+// // Export GET and POST methods for App Router
+// export { handler as GET, handler as POST }
+
+
+import NextAuth, { type NextAuthOptions } from "next-auth"
+import CredentialsProvider from "next-auth/providers/credentials"
+import { SupabaseAdapter } from "@next-auth/supabase-adapter"
+import { createServerClient } from "@supabase/ssr"
+import { cookies, headers } from "next/headers"
+import bcrypt from "bcryptjs"
+import { createClient } from "@supabase/supabase-js"
+
+// Extend NextAuth session user type to include 'id'
+declare module "next-auth" {
+  interface Session {
+    user?: {
+      id?: string
+      name?: string | null
+      email?: string | null
+      image?: string | null
+    }
+  }
 }
 
 export const authOptions: NextAuthOptions = {
@@ -30,64 +115,60 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) {
-          return null;
-        }
+        if (!credentials?.email || !credentials?.password) return null
 
-
-const supabase = createClient(supabaseUrl, supabaseServiceRoleKey);
+        const supabase = createClient(
+          process.env.NEXT_PUBLIC_SUPABASE_URL!,
+          process.env.SUPABASE_SERVICE_ROLE_KEY!,
+          // { cookies: await cookies(), headers: await headers() }
+        )
 
         const { data: user, error } = await supabase
           .from("users")
-          .select("id, name, email, hashed_password")
+          .select("*")
           .eq("email", credentials.email)
-          .single();
+          .single()
 
-        if (error || !user) {
-          console.error("Supabase authentication error:", error);
-          return null;
-        }
+        if (error || !user) return null
 
-        const isValid = await bcrypt.compare(credentials.password, user.hashed_password);
-        if (!isValid) {
-          return null;
-        }
+        const isValid = await bcrypt.compare(credentials.password, user.hashed_password)
+        if (!isValid) return null
 
         return {
           id: user.id,
           name: user.name,
           email: user.email,
-        };
+        }
       },
     }),
   ],
+
   adapter: SupabaseAdapter({
-    url: supabaseUrl,
-    secret: supabaseServiceRoleKey,
+    url: process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    secret: process.env.SUPABASE_SERVICE_ROLE_KEY!,
   }),
+
   session: {
     strategy: "jwt",
   },
+
   pages: {
     signIn: "/admin/login",
   },
+
   callbacks: {
-    async session({ session, token }) {
-      if (token?.sub && session.user) {
-        session.user.email = token.sub;
-      }
-      return session;
-    },
     async jwt({ token, user }) {
-      if (user) {
-        token.sub = user.id;
-      }
-      return token;
+      if (user) token.sub = user.id
+      return token
+    },
+    async session({ session, token }) {
+      if (token?.sub && session.user) session.user.id = token.sub
+      return session
     },
   },
-  secret: nextAuthSecret,
-};
 
-const handler = NextAuth(authOptions);
+  secret: process.env.NEXTAUTH_SECRET!,
+}
 
-export { handler as GET, handler as POST };
+const handler = NextAuth(authOptions)
+export { handler as GET, handler as POST }

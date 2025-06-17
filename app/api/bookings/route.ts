@@ -2,6 +2,9 @@ import { NextResponse } from "next/server";
 import { supabase } from "@/lib/supabase";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "../auth/[...nextauth]/route";
+
+
+// POST /api/bookings - Create a new booking
 export async function POST(request: Request) {
   const session = await getServerSession(authOptions);
 
@@ -21,7 +24,16 @@ export async function POST(request: Request) {
 
   const { data: booking, error } = await supabase
     .from("bookings")
-    .insert([{ name, email, service, date, phone, user_id: session.user.email }])
+    .insert([
+      {
+        name,
+        email,
+        service,
+        date,
+        phone,
+        user_id: session.user?.email ?? null,
+      },
+    ])
     .select()
     .single();
 
@@ -32,6 +44,7 @@ export async function POST(request: Request) {
   return NextResponse.json(booking, { status: 201 });
 }
 
+// GET /api/bookings - Get bookings with optional filters
 export async function GET(request: Request) {
   const session = await getServerSession(authOptions);
 
@@ -43,7 +56,10 @@ export async function GET(request: Request) {
   const serviceFilter = url.searchParams.get("service");
   const statusFilter = url.searchParams.get("status");
 
-  let query = supabase.from("bookings").select("*").order("date", { ascending: false });
+  let query = supabase
+    .from("bookings")
+    .select("*")
+    .order("date", { ascending: false });
 
   if (serviceFilter) {
     query = query.eq("service", serviceFilter);
