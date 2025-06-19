@@ -50,7 +50,7 @@ export default function Navbar() {
 
         {/* Mobile Menu Toggle */}
         <button
-          className="md:hidden text-gray-700 focus:outline-none"
+          className="mr-8 md:hidden text-gray-700 focus:outline-none"
           onClick={toggleMenu}
           aria-label="Toggle navigation menu"
         >
@@ -76,7 +76,7 @@ export default function Navbar() {
             <button
               onClick={closeMenu}
               aria-label="Close menu"
-              className="text-gray-700"
+              className="text-gray-700 mr-8"
             >
               <X size={28} />
             </button>
