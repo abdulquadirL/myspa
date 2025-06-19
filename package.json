@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@next-auth/supabase-adapter": "^0.2.1",
     "@supabase/auth-helpers-nextjs": "^0.10.0",
     "@supabase/ssr": "^0.6.1",
@@ -30,6 +31,7 @@
     "react-csv": "^2.2.2",
     "react-dom": "^19.0.0",
     "react-toastify": "^11.0.5",
+    "sonner": "^2.0.5",
     "tailwind-merge": "^3.3.0"
   },
   "devDependencies": {

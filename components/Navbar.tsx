@@ -29,8 +29,8 @@ export default function Navbar() {
             width={48}
             height={48}
           />
-          <h2 className="text-sm sm:text-xxsm lg:text-xl font-bold font-serif text-gray-800">
-            nirvana de spa    
+          <h2 className="text-sm sm:text-xxsm lg:text-xl font-bold font-roboto text-gray-800">
+            nirvanadespa    
           </h2>
         </Link>
 
