@@ -7,12 +7,16 @@ import { toast } from 'sonner'
 
 const SERVICES = [
   { label: 'Massage', price: 15000 },
-  { label: 'Facial', price: 12000 },
-  { label: 'Salon Male', price: 10000 },
-  { label: 'Salon Female', price: 12000 },
+  { label: 'Full Pedicure', price: 15000 },
+  { label: 'Facial With Dermal Planning', price: 45000 },
+  { label: 'Dermal Planning', price: 45000 },
+  { label: 'Luxury  Pedicure', price: 45000 },
   { label: 'Body Treatment', price: 18000 },
   { label: 'Manicure & Pedicure', price: 9000 },
-  { label: 'Full Spa Package', price: 35000 },
+  { label: 'Full Body Waxing', price: 45000 },
+  { label: 'Full Body ', price: 45000 },
+  { label: 'Full Waxing', price: 45000 },
+  
 ]
 
 export default function BookingModal() {
@@ -68,12 +72,13 @@ export default function BookingModal() {
       //   body: JSON.stringify({ ...form, totalPrice }),
       // })
 
-      toast.success('Booking confirmed and email sent!')
-      setForm({ name: '', email: '', date: '', services: [] })
+      toast.success('Booking confirmed and email sent! 🎉')
+      
       document.getElementById('bookingModal')?.classList.add('hidden')
+      setForm({ name: '', email: '', date: '', services: [] })
     } catch (error) {
-      console.error(error)
-      toast.error('Something went wrong. Try again.')
+      console.error('EmailJS Error:', error)
+      toast.error('Something went wrong. Please try again.')
     } finally {
       setCheckingOut(false)
     }
@@ -95,7 +100,7 @@ export default function BookingModal() {
           ×
         </button>
         <h3 className="text-xl font-bold text-center mb-2">Book an Appointment</h3>
-        <form onSubmit={handleSubmit} className="space-y-3">
+        <form onSubmit={handleSubmit} className="space-y-3 ">
           <input
             type="text"
             placeholder="Full Name"
@@ -121,7 +126,7 @@ export default function BookingModal() {
           />
           <div>
             <label className="block mb-1 font-medium">Select Services</label>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 overflow-y-auto max-h-60">
               {SERVICES.map((service) => (
                 <label
                   key={service.label}

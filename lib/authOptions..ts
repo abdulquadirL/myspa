@@ -1,46 +1,32 @@
-// lib/authOptions.ts
-import { NextAuthOptions } from "next-auth"
-import CredentialsProvider from "next-auth/providers/credentials"
-import { SupabaseAdapter } from "@next-auth/supabase-adapter"
-import bcrypt from "bcryptjs"
-import { createClient } from "@supabase/supabase-js"
+import NextAuth from 'next-auth'
+import CredentialsProvider from 'next-auth/providers/credentials'
+import bcrypt from 'bcryptjs'
+import { createClient } from '@supabase/supabase-js'
 
-declare module "next-auth" {
-  interface Session {
-    user: {
-      id: string
-      name?: string | null
-      email?: string | null
-      image?: string | null
-    }
-  }
-}
-
-export const authOptions: NextAuthOptions = {
+export const authOptions = {
   providers: [
     CredentialsProvider({
-      name: "Credentials",
+      name: 'Credentials',
       credentials: {
-        email: { label: "Email", type: "email" },
-        password: { label: "Password", type: "password" },
+        email: { label: 'Email', type: 'email' },
+        password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) return null
-
         const supabase = createClient(
           process.env.NEXT_PUBLIC_SUPABASE_URL!,
-          process.env.SUPABASE_SERVICE_ROLE_KEY!
+          process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
         )
 
         const { data: user, error } = await supabase
-          .from("users")
-          .select("*")
-          .eq("email", credentials.email)
+          .from('users')
+          .select('*')
+          .eq('email', credentials?.email)
           .single()
 
         if (error || !user) return null
 
-        const isValid = await bcrypt.compare(credentials.password, user.hashed_password)
+        const isValid = await bcrypt.compare(credentials!.password, user.password)
+
         if (!isValid) return null
 
         return {
@@ -51,25 +37,31 @@ export const authOptions: NextAuthOptions = {
       },
     }),
   ],
-  adapter: SupabaseAdapter({
-    url: process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    secret: process.env.SUPABASE_SERVICE_ROLE_KEY!,
-  }),
   session: {
-    strategy: "jwt",
+    strategy: 'jwt',
   },
   pages: {
-    signIn: "/admin/login",
+    signIn: '/admin/login',
   },
   callbacks: {
-    async jwt({ token, user }) {
-      if (user) token.sub = user.id
+    async jwt({ token, user }: { token: any; user?: any }) {
+      if (user) {
+        token.id = user.id
+        token.email = user.email
+        token.name = user.name
+      }
       return token
     },
-    async session({ session, token }) {
-      if (token?.sub && session.user) session.user.id = token.sub
+    async session({ session, token } : { session: any; token: any }) {
+      if (token) {
+        session.user = {
+          id: token.id,
+          email: token.email,
+          name: token.name,
+        }
+      }
       return session
     },
   },
-  secret: process.env.NEXTAUTH_SECRET!,
+  secret: process.env.NEXTAUTH_SECRET,
 }

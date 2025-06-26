@@ -1,19 +1,20 @@
-// middleware.ts (root of project)
-import { NextResponse } from 'next/server'
-import type { NextRequest } from 'next/server'
-import { getToken } from 'next-auth/jwt'
+import { withAuth } from 'next-auth/middleware'
 
-export async function middleware(req: NextRequest) {
-  const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET })
+export default withAuth({
+  pages: {
+    signIn: '/admin/login',
+  },
+  callbacks: {
+    authorized: ({ token, req }) => {
+      const { pathname } = req.nextUrl
+      // Allow public access to login page
+      if (pathname === '/admin/login') return true
 
-  if (req.nextUrl.pathname.startsWith('/admin')) {
-    if (!token || token.role !== 'admin') {
-      return NextResponse.redirect(new URL('/admin/login', req.url))
-    }
-  }
-
-  return NextResponse.next()
-}
+      // Require token for all other /admin routes
+      return !!token
+    },
+  },
+})
 
 export const config = {
   matcher: ['/admin/:path*'],

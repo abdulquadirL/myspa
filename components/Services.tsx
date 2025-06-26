@@ -6,13 +6,13 @@ import Card from "./Card";
 const cardsData = [
   {
     id: 1,
-    title: "Massages",
+    title: "Spa & Massage",
     content: "Experience deep relaxation with our signature massage techniques.",
     imageUrl: "/nirvana/massage.jpeg",
   },
   {
     id: 2,
-    title: "Lashes",
+    title: "Lash Extensions",
     content: "Enhance your beauty with our professional lash services.",
     imageUrl: "/nirvana/lash.jpg",
   },
@@ -23,22 +23,40 @@ const cardsData = [
     imageUrl: "/nirvana/salon.jpg",
   },
   {
-    id: 5,
+    id: 4,
     title: "Manicures & Pedicures",
     content: "Indulge in holistic therapies that promote overall wellness.",
     imageUrl: "/nirvana/pedicure.jpg",
   },
   {
-    id: 6,
-    title: "Nail Care",
+    id: 5,
+    title: "Nails",
     content: "Pamper your nails with our expert nail care services.",
     imageUrl: "/nirvana/nails.jpg",
   },
   {
-    id: 4,
-    title: "Facials",
+    id: 6,
+    title: "Face Treatments",
     content: "Nourish your skin with our rejuvenating facial treatments.",
     imageUrl: "/nirvana/facials.jpg",
+  },
+  {
+    id: 7,
+    title: "Waxing",
+    content: "Experience smooth skin with our professional waxing services.",
+    imageUrl: "/nirvana/waxing.jpg",
+  },
+  {
+    id: 8,
+    title: "Body Scrub",
+    content: "Exfoliate and rejuvenate your skin with our body scrub treatments.",
+    imageUrl: "/nirvana/body-scrub.jpg",
+  },
+  {
+    id: 9,
+    title: "Teeth Whitening",
+    content: "Brighten your smile with our effective teeth whitening services.",  
+    imageUrl: "/nirvana/teeth-whitening.jpg",
   },
 ];
 
