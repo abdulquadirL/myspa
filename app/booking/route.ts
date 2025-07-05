@@ -4,11 +4,7 @@ import { createClient } from '@/lib/supabase/server'
 
 // GET: Fetch all bookings
 export async function GET() {
-  const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!,
-    { auth: { persistSession: false } }
-  )
+  const supabase = createClient()
 
   const { data, error } = await supabase
     .from('bookings')
@@ -25,11 +21,7 @@ export async function GET() {
 
 // POST: Create a new booking
 export async function POST(req: NextRequest) {
-  const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!,
-    { auth: { persistSession: false } }
-  )
+  const supabase = createClient()
   const body = await req.json()
 
   const { name, email, date, services, totalPrice } = body

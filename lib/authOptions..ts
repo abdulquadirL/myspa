@@ -1,65 +1,47 @@
-import NextAuth from 'next-auth'
+// lib/authOptions.ts
 import CredentialsProvider from 'next-auth/providers/credentials'
-import bcrypt from 'bcryptjs'
-import { createClient } from '@supabase/supabase-js'
+import { createClient } from '@/lib/supabase/server'
+import { compare } from 'bcryptjs'
+import { AuthOptions } from 'next-auth'
 
-export const authOptions = {
+export const authOptions: AuthOptions = {
   providers: [
     CredentialsProvider({
-      name: 'Credentials',
+      name: 'Admin Login',
       credentials: {
-        email: { label: 'Email', type: 'email' },
+        email: { label: 'Email', type: 'text' },
         password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
-        const supabase = createClient(
-          process.env.NEXT_PUBLIC_SUPABASE_URL!,
-          process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-        )
-
-        const { data: user, error } = await supabase
-          .from('users')
+        const supabase = createClient()
+        const { data, error } = await supabase
+          .from('admins')
           .select('*')
           .eq('email', credentials?.email)
           .single()
 
-        if (error || !user) return null
+        if (!data || error) return null
 
-        const isValid = await bcrypt.compare(credentials!.password, user.password)
-
+        const isValid = await compare(credentials!.password, data.password)
         if (!isValid) return null
 
         return {
-          id: user.id,
-          name: user.name,
-          email: user.email,
+          id: data.id,
+          name: data.email,
+          email: data.email,
         }
       },
     }),
   ],
-  session: {
-    strategy: 'jwt',
-  },
-  pages: {
-    signIn: '/admin/login',
-  },
+  session: { strategy: 'jwt' },
+  pages: { signIn: '/admin/login' },
   callbacks: {
-    async jwt({ token, user }: { token: any; user?: any }) {
-      if (user) {
-        token.id = user.id
-        token.email = user.email
-        token.name = user.name
-      }
+    async jwt({ token, user }) {
+      if (user) token.user = user
       return token
     },
-    async session({ session, token } : { session: any; token: any }) {
-      if (token) {
-        session.user = {
-          id: token.id,
-          email: token.email,
-          name: token.name,
-        }
-      }
+    async session({ session, token }) {
+      if (token?.user) session.user = token.user as any
       return session
     },
   },
