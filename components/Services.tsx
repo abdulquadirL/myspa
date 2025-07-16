@@ -38,7 +38,7 @@ const cardsData = [
     id: 6,
     title: "Face Treatments",
     content: "Nourish your skin with our rejuvenating facial treatments.",
-    imageUrl: "/nirvana/facials.jpg",
+    imageUrl: "/nirvana/nirvanadespa03.jpg",
   },
   {
     id: 7,
